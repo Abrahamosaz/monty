@@ -49,6 +49,7 @@ static void call_func(char **argv)
 	instruction_t func[] = {
 		{"push", Func_push},
 		{"pall", Func_pall},
+		{"pint", Func_pint},
 		{"swap", Func_pall},
 		{'\0', NULL}
 	};

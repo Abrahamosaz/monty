@@ -55,4 +55,7 @@ int StrCountWord(char *, char *);
 opcode_t *StrtokenizLineCommand(char *);
 void Func_push(stack_t **, unsigned int);
 void Func_pall(stack_t **, unsigned int);
+void Func_pint(stack_t **, unsigned int);
+void Func_swap(stack_t **, unsigned int);
+
 #endif
