@@ -33,7 +33,7 @@ char **_strtokenize(char *readptr)
  *
  *
  */
-opcode_t *StrtokenizLineCommand(char *argv)
+opcode_t *StrtokenizLineCommand(char *argv, unsigned int line_number)
 {
 	char *delim = " ", *token = NULL;
 	opcode_t *opcode_new = NULL;
@@ -46,10 +46,12 @@ opcode_t *StrtokenizLineCommand(char *argv)
 	token = strtok(NULL, delim);
 	if (!strcmp(opcode_new->opcode_name, "push"))
 	{
-		if (isdigit(*token))
+		if (!token || !isdigit(*token))
+		{
+			fprintf(stderr, "L%u: usage: print integer\n", line_number);
+			exit(EXIT_FAILURE);
+		} else
 			opcode_new->opcode_value = atoi(token);
-		else
-			fprintf(stderr, "could'nt store value\n");
 	} else
 		opcode_new->opcode_value = 0;
 	return (opcode_new);

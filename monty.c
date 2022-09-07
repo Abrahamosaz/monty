@@ -1,7 +1,37 @@
 #include "monty.h"
-#define READSIZE 1024
-#define EXIT exit(EXIT_FAILURE)
 int stack_value;
+static unsigned int line_number = 1;
+/**
+ *
+ */
+static
+char **HandleComment(char **token)
+{
+	size_t i = 0, indx = 0;
+	char **new_token = NULL;
+
+	while (token[i])
+		i++;
+	new_token = malloc(sizeof(char *) * (i + 1));
+	if (!new_token)
+		ErrorHandler(3, NULL, 0);
+	i = 0;
+	while (token[i])
+	{
+		if (*(token[i]) == '#')
+		{
+			free(token[i]);
+			line_number++;
+		} else
+		{
+			new_token[indx] = token[i];
+			indx++;
+		}
+		i++;
+	}
+	new_token[indx] = NULL;
+	return (new_token);
+}
 /**
  * ErrorHandler - handle errors	 in the program
  * @error_number: unique error number for different error
@@ -9,56 +39,48 @@ int stack_value;
  *
  * Return: return void
  */
-void ErrorHandler(int error_number, char *arg, int line_number)
+
+/**
+ *
+ */
+static
+instruction_t *initialize_opcode()
 {
-	switch (error_number)
-	{
-		case 1:/* program argument error */
-		{
-			fprintf(stderr, "USAGE: monty %s\n", arg);
-			EXIT;
-			break;
-		}
-		case 2:/* open file error */
-		{
-			fprintf(stderr, "Error could'nt open file %s\n", arg);
-			EXIT;
-			break;
-		}
-		case 3:/* malloc error */
-		{
-			fprintf(stderr, "Error: malloc failed\n");
-			EXIT;
-			break;
-		}
-		case 4:/* opcode error (invalid instruction) */
-		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, arg);
-			EXIT;
-			break;
-		}
-	}
+	static instruction_t func[] = {
+		{"push", Func_push},
+		{"pall", Func_pall},
+		{"pop", Func_pop},
+		{"pint", Func_pint},
+		{"swap", Func_swap},
+		{"add", Func_add},
+		{"sub", Func_sub},
+		{"div", Func_div},
+		{"mul", Func_mul},
+		{"mod", Func_mod},
+		{"pchar", Func_pchar},
+		{"nop", Func_nop},
+		{"pstr", Func_pstr},
+		{"rotl", Func_rotl},
+		{'\0', NULL}
+	};
+	return (func);
 }
 /**
  *
  *
  */
-static void call_func(char **argv)
+static
+void call_func(char **argv)
 {
-	size_t i = 0, j, line_number = 1, check = 0;
-	instruction_t func[] = {
-		{"push", Func_push},
-		{"pall", Func_pall},
-		{"pint", Func_pint},
-		{"swap", Func_pall},
-		{'\0', NULL}
-	};
+	size_t i = 0, j, check = 0;
+	instruction_t *func  = NULL;
 	opcode_t *opcode_info = NULL;
 	stack_t *head = NULL;
 
+	func = initialize_opcode();
 	while (argv[i])
 	{
-		opcode_info = StrtokenizLineCommand(argv[i]);
+		opcode_info = StrtokenizLineCommand(argv[i], line_number);
 		j  = 0;
 		while (func[j].opcode)
 		{
@@ -81,6 +103,7 @@ static void call_func(char **argv)
 		check = 0;
 	}
 	free(argv);
+	free_stack(&head);
 }
 /**
  * main - main program of the motty
@@ -92,18 +115,19 @@ static void call_func(char **argv)
 int main(int argc, char *argv[])
 {
 	int fd;
-	char *readptr = NULL, **str_token = NULL;
+	char *readptr = NULL, **str_token = NULL, **comment_free_token = NULL;
 
 	if (argc == 1 || argc > 2)
 		ErrorHandler(1, argv[1], 0);
-	fd = open(argv[1], O_RDWR);
-	if (fd == -1)
+	fd  = open(argv[1], O_RDWR);
+	if (fd < 0)
 		ErrorHandler(2, argv[1], 0);
 	readptr = malloc(sizeof(char) * READSIZE);
 	if (!readptr)
 		ErrorHandler(3, NULL, 0);
 	read(fd, readptr, READSIZE);
 	str_token = _strtokenize(readptr);
-	call_func(str_token);
+	comment_free_token =  HandleComment(str_token);
+	call_func(comment_free_token);
 	return (0);
 }

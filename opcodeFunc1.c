@@ -29,7 +29,8 @@ void Func_push(stack_t **head, unsigned int line_number)
  *
  *
  */
-static void pall_rec(stack_t *head)
+static
+void pall_rec(stack_t *head)
 {
 	if (!head)
 		return;
@@ -42,29 +43,46 @@ static void pall_rec(stack_t *head)
  */
 void Func_pall(stack_t **head, unsigned int line_number)
 {
+	if (!*head)
+		return;
 	(void)line_number;
 	pall_rec(*head);
 }
-
 /**
  *
+ */
+void Func_pop(stack_t **head, unsigned int line_number)
+{
+	int count;
+	stack_t *dir = *head;
+
+	count = CountStack(head);
+	if (!count)
+		ErrorHandler(5, NULL, line_number);
+	else if (count == 1)
+	{
+		*head =  NULL;
+		return;
+	}
+	while (dir->next)
+		dir = dir->next;
+	dir->prev->next = NULL;
+	free(dir);
+}
+/**
  *
  *
  */
 void Func_pint(stack_t **head, unsigned int line_number)
 {
-        stack_t *temp = *head;
-        int val;
+	stack_t *dir = *head;
 
-        if (!temp)
-        {
-                fprintf(stderr, "L%u: can't pint, stack empty", line_number);
-                free(*head);
-                exit(EXIT_FAILURE);
-        }
-        while (temp->next != NULL)
-                temp = temp->next;
-        val = temp->n;
-        free(temp);
-        printf("%d\n", val);
+	if (!CountStack(head))
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	while (dir->next)
+		dir = dir->next;
+	printf("%d\n", dir->n);
 }

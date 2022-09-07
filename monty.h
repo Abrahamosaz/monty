@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <ctype.h>
 
+#define READSIZE 1024
+#define EXIT exit(EXIT_FAILURE);
 extern int stack_value;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -52,10 +54,21 @@ typedef struct opcode
 void ErrorHandler(int, char *, int);
 char **_strtokenize(char *);
 int StrCountWord(char *, char *);
-opcode_t *StrtokenizLineCommand(char *);
+opcode_t *StrtokenizLineCommand(char *, unsigned int);
 void Func_push(stack_t **, unsigned int);
 void Func_pall(stack_t **, unsigned int);
+void Func_pop(stack_t **, unsigned int);
 void Func_pint(stack_t **, unsigned int);
 void Func_swap(stack_t **, unsigned int);
-
+void Func_add(stack_t **, unsigned int);
+void Func_nop(stack_t **, unsigned int);
+void Func_sub(stack_t **, unsigned int);
+void Func_div(stack_t **, unsigned int);
+void Func_mul(stack_t **, unsigned int);
+void Func_mod(stack_t **, unsigned int);
+void Func_pchar(stack_t **, unsigned int);
+void Func_pstr(stack_t **, unsigned int);
+void Func_rotl(stack_t **, unsigned int);
+void free_stack(stack_t **);
+int CountStack(stack_t **);
 #endif
