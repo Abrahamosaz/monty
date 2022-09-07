@@ -9,6 +9,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
+
+extern int stack_value;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,8 +41,18 @@ typedef struct instruction_s
 } instruction_t;
 /**
  *
+ *
  */
+typedef struct opcode
+{
+	char *opcode_name;
+	int opcode_value;
+} opcode_t;
 /* function declaration */
-void ErrorHandler(int, char *);
+void ErrorHandler(int, char *, int);
 char **_strtokenize(char *);
+int StrCountWord(char *, char *);
+opcode_t *StrtokenizLineCommand(char *);
+void Func_push(stack_t **, unsigned int);
+void Func_pall(stack_t **, unsigned int);
 #endif
