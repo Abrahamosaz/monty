@@ -49,8 +49,12 @@ static void call_func(char **argv)
 	instruction_t func[] = {
 		{"push", Func_push},
 		{"pall", Func_pall},
+<<<<<<< HEAD
 		{"pint", Func_pint},
 		{"swap", Func_swap},
+=======
+		{"swap", Func_pall},
+>>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
 		{'\0', NULL}
 	};
 	opcode_t *opcode_info = NULL;
