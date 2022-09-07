@@ -19,8 +19,12 @@ void Func_swap(stack_t **head, unsigned int line_number)
 void f_swap(stack_t **head, unsigned int counter)
 {
 	stack_t *temp;
+<<<<<<< HEAD
 	int len = 0;
 >>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
+=======
+	int len = 0, val;
+>>>>>>> f6aea29d3e1990894c01389f8743cceed28abf32
 
 	temp = *head;
 	while (temp)
@@ -38,6 +42,7 @@ void f_swap(stack_t **head, unsigned int counter)
 		free(*head);
 		exit(EXIT_FAILURE);
 	}
+<<<<<<< HEAD
 	temp = (*head)->next;
 <<<<<<< HEAD
 	val = temp->n;
@@ -53,4 +58,12 @@ void f_swap(stack_t **head, unsigned int counter)
 	temp->next = *head;
 	(*head) = (*head)->prev;
 >>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
+=======
+	temp = *head;
+	while (temp->next != NULL)
+		temp = temp->next;
+	val = temp->prev->n;
+	temp->prev->n = temp->next->n;
+	temp->next->n = val;
+>>>>>>> f6aea29d3e1990894c01389f8743cceed28abf32
 }

@@ -50,9 +50,13 @@ static void call_func(char **argv)
 		{"push", Func_push},
 		{"pall", Func_pall},
 <<<<<<< HEAD
+<<<<<<< HEAD
 		{"pint", Func_pint},
 		{"swap", Func_swap},
 =======
+=======
+		{"pint", Func_pint},
+>>>>>>> f6aea29d3e1990894c01389f8743cceed28abf32
 		{"swap", Func_pall},
 >>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
 		{'\0', NULL}

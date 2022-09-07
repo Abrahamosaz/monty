@@ -53,6 +53,7 @@ void Func_pall(stack_t **head, unsigned int line_number)
  */
 void Func_pint(stack_t **head, unsigned int line_number)
 {
+<<<<<<< HEAD
 	stack_t *temp = *head;
 	int val;
 
@@ -67,4 +68,20 @@ void Func_pint(stack_t **head, unsigned int line_number)
 	val = temp->n;
 	free(temp);
 	printf("%d\n", val);
+=======
+        stack_t *temp = *head;
+        int val;
+
+        if (!temp)
+        {
+                fprintf(stderr, "L%u: can't pint, stack empty", line_number);
+                free(*head);
+                exit(EXIT_FAILURE);
+        }
+        while (temp->next != NULL)
+                temp = temp->next;
+        val = temp->n;
+        free(temp);
+        printf("%d\n", val);
+>>>>>>> f6aea29d3e1990894c01389f8743cceed28abf32
 }
