@@ -24,16 +24,3 @@ void Func_rotl(stack_t **head, unsigned int line_number)
 	free(dir);
 	temp_ptr->next = NULL;
 }
-
-
-/**
- * Func_queue - sets the format of the data to a queue (FIFO).
- * @head: pointer to pointer to node
- * @line_number: line number
- */
-
-/**
- * Func_stack - sets the format of the data to a queue (FIFO).
- * @head: pointer to pointer to node
- * @line_number: line number
- */
