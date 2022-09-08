@@ -62,6 +62,8 @@ instruction_t *initialize_opcode()
 		{"nop", Func_nop},
 		{"pstr", Func_pstr},
 		{"rotl", Func_rotl},
+		{"queue", Func_queue},
+		{"stack", Func_stack},
 		{'\0', NULL}
 	};
 	return (func);

@@ -13,6 +13,7 @@
 #define READSIZE 1024
 #define EXIT exit(EXIT_FAILURE)
 extern int stack_value;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -54,6 +55,7 @@ typedef struct opcode
 	char *opcode_name;
 	int opcode_value;
 } opcode_t;
+
 /* function declaration */
 void ErrorHandler(int, char *, int);
 char **_strtokenize(char *);
@@ -76,4 +78,6 @@ void Func_rotl(stack_t **, unsigned int);
 void free_stack(stack_t **);
 int _isascii(int);
 int CountStack(stack_t **);
+void Func_queue(stack_t **, unsigned int);
+void Func_stack(stack_t **, unsigned int);
 #endif
