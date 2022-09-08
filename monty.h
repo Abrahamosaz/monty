@@ -11,7 +11,7 @@
 #include <ctype.h>
 
 #define READSIZE 1024
-#define EXIT exit(EXIT_FAILURE);
+#define EXIT exit(EXIT_FAILURE)
 extern int stack_value;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -42,8 +42,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 /**
+ * struct opcode - opcode name and value
+ * @opcode_name: name of the opcode instruction
+ * @opcode_value: value argumnent of the opcode
  *
- *
+ * Description: To be ble to store the opcode instruction and value
+ * for the stack, queue, LIFO, FIFO
  */
 typedef struct opcode
 {

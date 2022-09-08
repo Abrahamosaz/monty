@@ -72,7 +72,7 @@ void ErrorHandler(int error_number, char *arg, int line_number)
 		}
 		case 2:/* open file error */
 		{
-			fprintf(stderr, "Error could'nt open file %s\n", arg);
+			fprintf(stderr, "Error: can't  open file %s\n", arg);
 			EXIT;
 			break;
 		}
