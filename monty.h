@@ -70,5 +70,6 @@ void Func_pchar(stack_t **, unsigned int);
 void Func_pstr(stack_t **, unsigned int);
 void Func_rotl(stack_t **, unsigned int);
 void free_stack(stack_t **);
+int _isascii(int);
 int CountStack(stack_t **);
 #endif
