@@ -14,7 +14,7 @@ void Func_swap(stack_t **head, unsigned int line_number)
 	if (CountStack(head) < 2)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	while (dir->next)
 		dir = dir->next;
@@ -38,7 +38,7 @@ void Func_add(stack_t **head, unsigned int line_number)
 	if (CountStack(head) < 2)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	while (dir->next)
 		dir = dir->next;
@@ -74,7 +74,7 @@ void Func_sub(stack_t **head, unsigned int line_number)
 	if (CountStack(head) < 2)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	while (dir->next)
 		dir = dir->next;
@@ -99,14 +99,14 @@ void Func_div(stack_t **head, unsigned int line_number)
 	if (CountStack(head) < 2)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	while (dir->next)
 		dir = dir->next;
 	if (!dir->n)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	prev = dir->prev;
 	result = (prev->n) / (dir->n);

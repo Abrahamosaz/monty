@@ -1,6 +1,4 @@
 #include "monty.h"
-#include <ctype.h>
-
 /**
  * Func_mul - multiplies the second top element of the stack
  * with the top element of the stack.
@@ -15,7 +13,7 @@ void Func_mul(stack_t **head, unsigned int line_number)
 	if (CountStack(head) < 2)
 	{
 		fprintf(stderr,  "L%u: can't mul, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	while (dir->next)
 		dir = dir->next;
@@ -25,7 +23,6 @@ void Func_mul(stack_t **head, unsigned int line_number)
 	free(dir);
 	prev->next = NULL;
 }
-
 /**
  * Func_mod - computes the rest of the division of the second top
  * element of the stack by the top element of the stack.
@@ -40,14 +37,14 @@ void Func_mod(stack_t **head, unsigned int line_number)
 	if (CountStack(head) < 2)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	while (dir->next)
 		dir = dir->next;
 	if (!dir->n)
 	{
 		fprintf(stderr, "L%u: division by zero\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	prev = dir->prev;
 	result = (prev->n) % (dir->n);
@@ -55,7 +52,6 @@ void Func_mod(stack_t **head, unsigned int line_number)
 	free(dir);
 	prev->next = NULL;
 }
-
 /**
  * ErrorHandler - handle errors	 in the program
  * @error_number: unique error number for different error
@@ -70,7 +66,7 @@ void ErrorHandler(int error_number, char *arg, int line_number)
 	{
 		case 1:/* program argument error */
 		{
-			fprintf(stderr, "USAGE: monty %s\n", arg);
+			fprintf(stderr, "USAGE: monty file");
 			EXIT;
 			break;
 		}
@@ -114,18 +110,17 @@ void Func_pchar(stack_t **head, unsigned int line_number)
 	if (!CountStack(head))
 	{
 		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	while (dir->next)
 		dir = dir->next;
 	if (!isalpha(dir->n + 48))
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
-		exit(EXIT_FAILURE);
+		EXIT;
 	}
 	printf("%c\n", dir->n);
 }
-
 /**
  * Func_pstr - prints the string starting at the top of the
  * stack, followed by a new line.
