@@ -1,33 +1,6 @@
 #include "monty.h"
 
 /**
- * Func_push - inserts a value into stack
- * @head: pointer to head node address
- * @line_number: line number
- */
-void Func_push(stack_t **head, unsigned int line_number)
-{
-	stack_t *new_stack =  NULL, *dir = *head;
-
-	(void)line_number;
-	new_stack = malloc(sizeof(stack_t));
-	if (!new_stack)
-		ErrorHandler(3, NULL, 0);
-	new_stack->next = NULL;
-	new_stack->n = stack_value;
-	if (head && !*head)
-	{
-		new_stack->prev = NULL;
-		*head =  new_stack;
-		return;
-	}
-	while (dir->next)
-		dir = dir->next;
-	new_stack->prev =  dir;
-	dir->next = new_stack;
-}
-
-/**
  * pall_rec - recursive function to print stack elements
  *
  * @head: pointer to head node

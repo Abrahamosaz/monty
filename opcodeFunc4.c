@@ -1,5 +1,5 @@
 #include "monty.h"
-
+static char *opcode_type =  "stack";
 /**
  * Func_rotl - rotates the stack to the top.
  * @head: pointer to pointer to node
@@ -23,4 +23,63 @@ void Func_rotl(stack_t **head, unsigned int line_number)
 	*head = top_ptr;
 	free(dir);
 	temp_ptr->next = NULL;
+}
+/**
+ * Handle_stack - change the opcode_type to stack layout
+ * @head: head pointer
+ * @line_number: line_number of instruction
+ */
+void Handle_stack(stack_t **head, unsigned int line_number)
+{
+	(void)head;
+	(void)line_number;
+	if (!strcmp(opcode_type, "queue"))
+		opcode_type = "stack";
+}
+/**
+ * Handle_queue - change the opcode_typr to queue layout
+ * @head: head pointer
+ * @line_number: line_number of instruction
+ */
+void Handle_queue(stack_t **head, unsigned int line_number)
+{
+	(void)head;
+	(void)line_number;
+	if (!strcmp(opcode_type, "stack"))
+		opcode_type =  "queue";
+}
+/**
+ * Func_push - inserts a value into stack
+ * @head: pointer to head node address
+ * @line_number: line number
+ */
+void Func_push(stack_t **head, unsigned int line_number)
+{
+	stack_t *new_stack =  NULL, *dir = *head;
+
+	(void)line_number;
+	new_stack = malloc(sizeof(stack_t));
+	if (!new_stack)
+		ErrorHandler(3, NULL, 0);
+	new_stack->next = NULL;
+	new_stack->n = stack_value;
+	if (head && !*head)
+	{
+		new_stack->prev = NULL;
+		*head =  new_stack;
+		return;
+	}
+	if (!strcmp(opcode_type, "stack"))
+	{
+		while (dir->next)
+			dir = dir->next;
+		new_stack->prev =  dir;
+		dir->next = new_stack;
+	} else if (!strcmp(opcode_type, "queue"))
+	{
+		new_stack->prev = NULL;
+		(*head)->prev =  new_stack;
+		new_stack->next = *head;
+		*head = new_stack;
+	}
 }
