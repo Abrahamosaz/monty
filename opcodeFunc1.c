@@ -70,7 +70,8 @@ void Func_pop(stack_t **head, unsigned int line_number)
 		ErrorHandler(5, NULL, line_number);
 	else if (count == 1)
 	{
-		*head =  NULL;
+		free(*head);
+		*head = NULL;
 		return;
 	}
 	while (dir->next)
