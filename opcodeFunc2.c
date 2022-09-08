@@ -1,34 +1,15 @@
 #include "monty.h"
-<<<<<<< HEAD
 
 /**
- *
- *
- */
-void Func_swap(stack_t **head, unsigned int line_number)
-{
-	stack_t *temp;
-	int len = 0, val;
-=======
-/**
- *
- *
+ * Func_swap - swaps the top two elements of the stack.
+ * @head: pointer to head node address
+ * @line_number: specific line number
  *
  */
 void Func_swap(stack_t **head, unsigned int line_number)
 {
-<<<<<<< HEAD
-	stack_t *temp;
-<<<<<<< HEAD
-	int len = 0;
->>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
-=======
-	int len = 0, val;
->>>>>>> f6aea29d3e1990894c01389f8743cceed28abf32
-=======
 	stack_t *dir = *head, *prev = NULL;
 	int temp;
->>>>>>> 3c8b99be47ae2a80ef61a49f06cf9ff5337c983f
 
 	if (CountStack(head) < 2)
 	{
@@ -42,8 +23,11 @@ void Func_swap(stack_t **head, unsigned int line_number)
 	prev->n = dir->n;
 	dir->n = temp;
 }
+
 /**
- *
+ * Func_add - adds the top two elements of the stack.
+ * @head: pointer to head node address
+ * @line_number: specific line number
  *
  */
 void Func_add(stack_t **head, unsigned int line_number)
@@ -64,16 +48,23 @@ void Func_add(stack_t **head, unsigned int line_number)
 	free(dir);
 	prev->next = NULL;
 }
+
 /**
- *
+ * Func_nop - performs nothing
+ * @head: unused
+ * @line_number: unused
  */
 void Func_nop(stack_t **head, unsigned int line_number)
 {
 	(void)head;
 	(void)line_number;
 }
+
 /**
- *
+ * Func_sub - subtracts the top element of the stack from
+ * the second top element of the stack.
+ * @head: pointer to head node
+ * @line_number: specific line number
  */
 void Func_sub(stack_t **head, unsigned int line_number)
 {
@@ -93,9 +84,12 @@ void Func_sub(stack_t **head, unsigned int line_number)
 	free(dir);
 	prev->next = NULL;
 }
+
 /**
- *
- *
+ * Func_div - divides the second top element of the stack
+ * by the top element of the stack.
+ * @head: pointer to pointer to node
+ * @line_number: specific line number
  */
 void Func_div(stack_t **head, unsigned int line_number)
 {
@@ -111,40 +105,6 @@ void Func_div(stack_t **head, unsigned int line_number)
 		dir = dir->next;
 	if (!dir->n)
 	{
-<<<<<<< HEAD
-<<<<<<< HEAD
-		fprintf(stderr, "L%u: can't swap, stack too short", line_number);
-=======
-		fprintf(stderr, "L%d: can't swap, stack too short\n", counter);
->>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
-		free(*head);
-		exit(EXIT_FAILURE);
-	}
-<<<<<<< HEAD
-	temp = (*head)->next;
-<<<<<<< HEAD
-	val = temp->n;
-	temp->n = temp->next->n;
-	temp->next->n = val;
-=======
-	(*head)->prev = (*head)->next;
-	(*head)->next = temp->next;
-	temp->prev = NULL;
-	(*head)->prev = temp;
-	if (temp->next)
-		temp->next->prev = *head;
-	temp->next = *head;
-	(*head) = (*head)->prev;
->>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
-=======
-	temp = *head;
-	while (temp->next != NULL)
-		temp = temp->next;
-	val = temp->prev->n;
-	temp->prev->n = temp->next->n;
-	temp->next->n = val;
->>>>>>> f6aea29d3e1990894c01389f8743cceed28abf32
-=======
 		fprintf(stderr, "L%u: division by zero\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -153,5 +113,4 @@ void Func_div(stack_t **head, unsigned int line_number)
 	prev->n = result;
 	free(dir);
 	prev->next = NULL;
->>>>>>> 3c8b99be47ae2a80ef61a49f06cf9ff5337c983f
 }

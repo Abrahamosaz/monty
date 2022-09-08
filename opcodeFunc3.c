@@ -1,8 +1,11 @@
 #include "monty.h"
 #include <ctype.h>
+
 /**
- *
- *
+ * Func_mul - multiplies the second top element of the stack
+ * with the top element of the stack.
+ * @head: pointer to pointer to node
+ * @line_number: line number
  */
 void Func_mul(stack_t **head, unsigned int line_number)
 {
@@ -22,9 +25,12 @@ void Func_mul(stack_t **head, unsigned int line_number)
 	free(dir);
 	prev->next = NULL;
 }
+
 /**
- *
- *
+ * Func_mod - computes the rest of the division of the second top
+ * element of the stack by the top element of the stack.
+ * @head: pointer to pointer to node
+ * @line_number: line number
  */
 void Func_mod(stack_t **head, unsigned int line_number)
 {
@@ -49,11 +55,13 @@ void Func_mod(stack_t **head, unsigned int line_number)
 	free(dir);
 	prev->next = NULL;
 }
+
 /**
  * ErrorHandler - handle errors	 in the program
  * @error_number: unique error number for different error
  * @arg: string needle for the error
  *
+ * @line_number: line number
  * Return: return void
  */
 void ErrorHandler(int error_number, char *arg, int line_number)
@@ -92,9 +100,12 @@ void ErrorHandler(int error_number, char *arg, int line_number)
 		}
 	}
 }
+
 /**
- *
- *
+ * Func_pchar - prints the char at the top of the stack,
+ * followed by a new line.
+ * @head: pointer to pointer to node
+ * @line_number: line number
  */
 void Func_pchar(stack_t **head, unsigned int line_number)
 {
@@ -114,9 +125,12 @@ void Func_pchar(stack_t **head, unsigned int line_number)
 	}
 	printf("%c\n", dir->n);
 }
+
 /**
- *
- *
+ * Func_pstr - prints the string starting at the top of the
+ * stack, followed by a new line.
+ * @head: pointer to pointer to node
+ * @line_number: line number
  */
 void Func_pstr(stack_t **head, unsigned int line_number)
 {

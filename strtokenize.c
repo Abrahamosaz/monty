@@ -1,7 +1,9 @@
 #include "monty.h"
+
 /**
- *
- *
+ * _strtokenize - checks for end of line for command
+ * @readptr: pointer to command
+ * Return: pointer to pointer
  *
  */
 char **_strtokenize(char *readptr)
@@ -30,7 +32,11 @@ char **_strtokenize(char *readptr)
 	return (argument);
 }
 /**
- *
+ * StrtokenizLineCommand - removes spaces and separates
+ * command and value
+ * @argv: argument passed to function
+ * @line_number: specific line being tokenized
+ * Return: new argument(command)
  *
  */
 opcode_t *StrtokenizLineCommand(char *argv, unsigned int line_number)
@@ -56,9 +62,12 @@ opcode_t *StrtokenizLineCommand(char *argv, unsigned int line_number)
 		opcode_new->opcode_value = 0;
 	return (opcode_new);
 }
+
 /**
- *
- *
+ * StrCountWord - returns number of arguments
+ * @word: string passed to function
+ * @delim: delimeter
+ * Return: number of args
  */
 int StrCountWord(char *word, char *delim)
 {

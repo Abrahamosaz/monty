@@ -1,8 +1,11 @@
 #include "monty.h"
 int stack_value;
 static unsigned int line_number = 1;
+
 /**
- *
+ * HandleComment - ignores comments
+ * @token: pointer to pointer
+ * Return: new token without #
  */
 static
 char **HandleComment(char **token)
@@ -33,16 +36,11 @@ char **HandleComment(char **token)
 	free(token);
 	return (new_token);
 }
-/**
- * ErrorHandler - handle errors	 in the program
- * @error_number: unique error number for different error
- * @arg: string needle for the error
- *
- * Return: return void
- */
+
 
 /**
- *
+ * initialize_opcode - links opcode with various functions
+ * Return: pointer to command
  */
 static
 instruction_t *initialize_opcode()
@@ -50,18 +48,8 @@ instruction_t *initialize_opcode()
 	static instruction_t func[] = {
 		{"push", Func_push},
 		{"pall", Func_pall},
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-		{"pint", Func_pint},
 		{"swap", Func_swap},
-=======
-=======
 		{"pint", Func_pint},
->>>>>>> f6aea29d3e1990894c01389f8743cceed28abf32
-		{"swap", Func_pall},
->>>>>>> f3b219869a28f04a7388b999f0c238aa65127879
-=======
 		{"pop", Func_pop},
 		{"pint", Func_pint},
 		{"swap", Func_swap},
@@ -74,14 +62,14 @@ instruction_t *initialize_opcode()
 		{"nop", Func_nop},
 		{"pstr", Func_pstr},
 		{"rotl", Func_rotl},
->>>>>>> 3c8b99be47ae2a80ef61a49f06cf9ff5337c983f
 		{'\0', NULL}
 	};
 	return (func);
 }
+
 /**
- *
- *
+ * call_func - gets command from pointer and executes function
+ * @argv: pointer to address of line command
  */
 static
 void call_func(char **argv)
@@ -119,6 +107,7 @@ void call_func(char **argv)
 	free(argv);
 	free_stack(&head);
 }
+
 /**
  * main - main program of the motty
  * @argc: number of argumant to the program

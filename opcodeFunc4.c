@@ -1,7 +1,9 @@
 #include "monty.h"
+
 /**
- *
- *
+ * Func_rotl - rotates the stack to the top.
+ * @head: pointer to pointer to node
+ * @line_number: line number
  */
 void Func_rotl(stack_t **head, unsigned int line_number)
 {
