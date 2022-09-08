@@ -30,6 +30,7 @@ char **HandleComment(char **token)
 		i++;
 	}
 	new_token[indx] = NULL;
+	free(token);
 	return (new_token);
 }
 /**
