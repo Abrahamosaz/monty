@@ -1,4 +1,5 @@
 #include "monty.h"
+
 static char *opcode_type =  "stack";
 /**
  * Func_rotl - rotates the stack to the top.

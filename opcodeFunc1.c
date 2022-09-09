@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * pall_rec - recursive function to print stack elements
  *
