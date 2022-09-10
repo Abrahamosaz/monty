@@ -70,3 +70,21 @@ void Func_pint(stack_t **head, unsigned int line_number)
 		dir = dir->next;
 	printf("%d\n", dir->n);
 }
+/**
+ * Func_rotr - rottate the first value to the last value
+ * @head: head pointer
+ * @line_number: line number for errors
+ */
+void Func_rotr(stack_t **head, unsigned int line_number)
+{
+	stack_t *dir = NULL, *temp =  *head;
+	int last_value = (*head)->n;
+
+	(void)line_number;
+	if (!CountStack(head))
+		return;
+	for (dir = *head; dir->next; dir = dir->next)
+		;
+	temp->n = dir->n;
+	dir->n = last_value;
+}

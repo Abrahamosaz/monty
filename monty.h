@@ -75,11 +75,10 @@ void Func_mod(stack_t **, unsigned int);
 void Func_pchar(stack_t **, unsigned int);
 void Func_pstr(stack_t **, unsigned int);
 void Func_rotl(stack_t **, unsigned int);
+void Func_rotr(stack_t **, unsigned int);
 void free_stack(stack_t **);
 void Handle_stack(stack_t **, unsigned int);
 void Handle_queue(stack_t **, unsigned int);
 int _isascii(int);
 int CountStack(stack_t **);
-void Func_queue(stack_t **, unsigned int);
-void Func_stack(stack_t **, unsigned int);
 #endif

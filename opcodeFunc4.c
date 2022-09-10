@@ -11,6 +11,8 @@ void Func_rotl(stack_t **head, unsigned int line_number)
 	stack_t *dir = *head, *top_ptr = NULL, *temp_ptr = NULL;
 
 	(void)line_number;
+	if (!CountStack(head))
+		return;
 	top_ptr = malloc(sizeof(top_ptr));
 	if (!top_ptr)
 		ErrorHandler(3, NULL, 0);
