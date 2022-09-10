@@ -77,14 +77,10 @@ void Func_pint(stack_t **head, unsigned int line_number)
  */
 void Func_rotr(stack_t **head, unsigned int line_number)
 {
-	stack_t *dir = NULL, *temp =  *head;
-	int last_value = (*head)->n;
+	stack_t *dir = *head;
 
 	(void)line_number;
 	if (!CountStack(head))
 		return;
-	for (dir = *head; dir->next; dir = dir->next)
-		;
-	temp->n = dir->n;
-	dir->n = last_value;
+	rotr_rec(*head, &dir);
 }

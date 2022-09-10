@@ -79,6 +79,7 @@ void Func_rotr(stack_t **, unsigned int);
 void free_stack(stack_t **);
 void Handle_stack(stack_t **, unsigned int);
 void Handle_queue(stack_t **, unsigned int);
+int rotr_rec(stack_t *, stack_t **);
 int _isascii(int);
 int CountStack(stack_t **);
 #endif

@@ -86,3 +86,28 @@ void Func_push(stack_t **head, unsigned int line_number)
 		*head = new_stack;
 	}
 }
+/**
+ * rotr_rec - recursion function to help rotate the stack
+ * @head: hold the address of pointer to stack_t
+ * @start: hold the address of the first linked list element
+ *
+ * Return: return 1 if True and 0 otherwise
+ */
+int rotr_rec(stack_t *head, stack_t **start)
+{
+	int temp;
+
+	if (!head)
+		return (1);
+	if (rotr_rec(head->next, start) && (*start)->n)
+	{
+		if (head->n == (*start)->n)
+			return (0);
+		temp = head->n;
+		head->n =  (*start)->n;
+		(*start)->n = temp;
+		*start = (*start)->next;
+		return (1);
+	}
+	return (0);
+}
